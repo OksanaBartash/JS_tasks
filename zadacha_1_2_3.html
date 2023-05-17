@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>JS 17.05.2023</title>
+
+
+	</head>
+	
+	
+<!--
+	// ЗАДАЧА_1/1: НА перетворення тексту в вверхній регістр + список перших літер: 	
+	
+	<body>	
+		<p id="myParagraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit what is Lorem Ipsum?.</p>
+				<button onclick="transformText()">Transform Text</button>
+
+	<script>
+
+			function transformText() {
+				  const paragraph = document.getElementById('myParagraph');
+				  const text = paragraph.textContent;
+				  
+				  const uppercaseText = text.toUpperCase();
+				  
+				  const words = text.split(' ');
+				  const firstLetters = words.map(word => word.charAt(0).toUpperCase());
+				  
+				  const transformedText = uppercaseText + '<br>' + firstLetters.join(' ');
+				  
+				  document.write(transformedText);
+				  console.log(transformedText);
+			}
+	  </script>
+</body>		
+-->		
+			
+
+
+<!--	 // ЗАДАЧА_1/2: НА перетворення тексту в вверхній регістр	
+	
+	<body>				
+		<textarea id="input" rows="4" cols="50"></textarea>
+			<button onclick="returnCode()">Convert</button>
+			
+		<script>	
+	function returnCode() {
+		  let result = '';
+		  const inputText = document.getElementById('input').value;
+		  
+		  const uppercaseText = inputText.toUpperCase();
+		  
+		  for(let i = 0; i < uppercaseText.length; i++) {
+			result += uppercaseText[i] + ' ';
+		  }; 
+		  
+		  document.write(result);
+		  console.log(result);
+		};
+		</script>		
+</body>		
+		
+			
+				
+			
+		
+<!--	// ЗАДАЧА_2: НА перетворення введених букв на їх коди:	
+
+	<body>				
+		<textarea id="input" rows="4" cols="50"></textarea>
+		<button onclick="returnNum()">Convert</button>
+	<script>
+		function returnNum() {
+			let result = '';
+			const inputText = document.getElementById('input').value;
+			
+			const uppercaseText = inputText.toUpperCase();
+			
+			for(let i = 0; i < uppercaseText.length; i++) {
+				result += uppercaseText.charCodeAt(i) + ' ';
+			}; 
+			
+			document.write(result);
+			console.log(result);
+		};
+		
+	
+	</script>
+
+</body>
+-->
+
+
+
+<!--	// ЗАДАЧА_3/1: Напишіть функцію для пошуку найдовшого збігу неповторних символів у рядку.:	
+
+	<body>				
+
+	<script>
+		function findLongestSubstring(str) {
+		  let longest = 0;
+		  let currentSubstr = '';
+		  const charCount = {};
+
+		  for (let letter of str) {
+			if (!currentSubstr.includes(letter)) {
+			  currentSubstr += letter;
+			  longest = Math.max(currentSubstr.length, longest);
+			} else {
+			  currentSubstr = currentSubstr.slice(currentSubstr.indexOf(letter) + 1);
+			  currentSubstr += letter;
+			}
+
+			charCount[letter] = (charCount[letter] || 0) + 1;
+		  }
+
+		  const result = {};
+
+		  for (let char in charCount) {
+			if (charCount[char] > 0) {
+			  result[char] = charCount[char];
+			}
+		  }
+
+		  return result;
+		}
+
+		console.log(findLongestSubstring('aaaaabbbbbbbasd'));
+		
+	
+	</script>
+
+</body>
+-->
+
+
+<!--	// ЗАДАЧА_3/2: Напишіть функцію для пошуку найдовшого збігу неповторних символів у рядку.:	
+
+<body>				
+
+	<script>
+		function findLongestSubstring(string) {
+		  let longestSubstring = '';
+		  let currentSubstring = '';
+		  const charCount = {};
+
+		  for (let i = 0; i < string.length; i++) {
+			const char = string[i];
+
+			if (charCount[char] && charCount[char] >= currentSubstring.length) {
+			  currentSubstring = string.slice(charCount[char] + 1, i + 1);
+			} else {
+			  currentSubstring += char;
+			}
+
+			charCount[char] = i;
+
+			if (currentSubstring.length > longestSubstring.length) {
+			  longestSubstring = currentSubstring;
+			}
+		  }
+
+		  const result = {};
+
+		  for (let i = 0; i < longestSubstring.length; i++) {
+			const char = longestSubstring[i];
+			result[char] = (result[char] || 0) + 1;
+		  }
+
+		  return result;
+		}
+		
+	const string = 'abcaabccdefg';
+	const longestSubstring = findLongestSubstring(string);
+
+	console.log(longestSubstring);
+	</script>
+</body>
+-->	
+
+
+<!--	// ЗАДАЧА_4: Напишіть реалізацію сортування даних (через sort) в таблиці обекта, при натисканні на її шапку дані в стовпці повинні стати в алфавітному порядку і дані стобця потрібно вивестися в список. Також інші дані таблиці ті що в одному рядку повинні переміщатися в місці з стовпчиком, що сортується.:-->		
+
+	<body>				
+				<table id="myTable">
+				  <thead>
+					<tr>
+					  <th onclick="sortTable(0)">Column 1</th>
+					  <th onclick="sortTable(1)">Column 2</th>
+					  <th onclick="sortTable(2)">Column 3</th>
+					  <th onclick="sortTable(3)">Column 4</th>
+					  <th onclick="sortTable(4)">Column 5</th>
+					</tr>
+				  </thead>
+				  <tbody>
+					<tr>
+					  <td>Value 90</td>
+					  <td>Value 58</td>
+					  <td>Value 72</td>
+					  <td>Value W</td>
+					  <td>Value S</td>
+					</tr>
+					<tr>
+					  <td>Value 96</td>
+					  <td>Value 11</td>
+					  <td>Value 41</td>
+					  <td>Value R</td>
+					  <td>Value Z</td>
+					</tr>
+	
+				  </tbody>
+				</table>
+
+				<ul id="sortedList"></ul>
+
+
+
+	<script>
+
+		// Отримуємо посилання на таблицю та список
+		const table = document.getElementById('myTable');
+		const sortedList = document.getElementById('sortedList');
+
+		// Отримуємо всі рядки таблиці
+		const rows = Array.from(table.querySelectorAll('tbody tr'));
+
+		// Функція для сортування даних у таблиці та оновлення таблиці та списку
+		function sortTable(columnIndex) {
+		  // Сортуємо рядки таблиці за значеннями у стовпці
+		  rows.sort((rowA, rowB) => {
+			const cellA = rowA.cells[columnIndex].innerText;
+			const cellB = rowB.cells[columnIndex].innerText;
+			return cellA.localeCompare(cellB);
+		  });
+
+		  // Видаляємо всі рядки з таблиці
+		  rows.forEach(row => row.remove());
+
+		  // Вставляємо відсортовані рядки назад до таблиці
+		  rows.forEach(row => table.querySelector('tbody').appendChild(row));
+
+		  // Ochishchayem spisok
+		  sortedList.innerHTML = '';
+
+		  // Створюємо елементи списку із відсортованими значеннями стовпця
+		  const sortedColumnValues = rows.map(row => row.cells[columnIndex].innerText);
+		  sortedColumnValues.forEach(value => {
+			const listItem = document.createElement('li');
+			listItem.innerText = value;
+			sortedList.appendChild(listItem);
+		  });
+		}
+	</script>
+	</body>
+
+</html>
+
+console.log("Hi!");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
